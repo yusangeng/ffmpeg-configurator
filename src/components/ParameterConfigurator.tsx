@@ -1,5 +1,5 @@
 import { Card, Form, Input, InputNumber, Switch, Slider, Tooltip, Space, AutoComplete } from "antd";
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext, useState, useCallback } from "react";
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { FFmpegVersionContext } from '../contexts/FFmpegVersionContext';
 import { getParametersForTaskAndVersion } from '../utils/paramLoader';
@@ -42,10 +42,10 @@ const ParameterConfigurator: React.FC<ParameterConfiguratorProps> = ({
     }
   }, [taskKey, selectedVersion, form, onParametersChange]);
 
-  const handleFormChange = () => {
+  const handleFormChange = useCallback(() => {
     const values = form.getFieldsValue();
     onParametersChange(values);
-  };
+  }, [form, onParametersChange]);
 
   const renderInput = (param: ParamConfig) => {
     // 使用类型守卫和 switch 语句来处理不同的参数类型
