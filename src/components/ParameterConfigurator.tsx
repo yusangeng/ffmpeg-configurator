@@ -30,12 +30,17 @@ const ParameterConfigurator: React.FC<ParameterConfiguratorProps> = ({
         initialValues[param.name] = param.defaultValue;
       });
       form.setFieldsValue(initialValues);
+      
+      // 初始化时也要触发参数变化
+      setTimeout(() => {
+        onParametersChange(form.getFieldsValue());
+      }, 0);
     };
 
     if (taskKey && selectedVersion) {
       loadParams();
     }
-  }, [taskKey, selectedVersion, form]);
+  }, [taskKey, selectedVersion, form, onParametersChange]);
 
   const handleFormChange = () => {
     const values = form.getFieldsValue();
