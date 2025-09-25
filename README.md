@@ -1,73 +1,36 @@
-# React + TypeScript + Vite
+# FFmpeg Configurator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GUI configurator and CMD generator of ffmpeg.
 
-Currently, two official plugins are available:
+## Development Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To push changes to GitHub, you need to set up authentication with a GitHub Personal Access Token.
 
-## React Compiler
+### Storing Your GitHub Token
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+For security, the GitHub Personal Access Token is stored in a local file that is ignored by Git:
 
-## Expanding the ESLint configuration
+1. The token is stored in `secrets/github_token.txt`
+2. This file is ignored by Git via the `.gitignore` file
+3. Never commit this file to the repository
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Pushing Changes
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+To push changes to GitHub, use the provided script:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+./scripts/push_with_token.sh
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This script will:
+1. Temporarily configure Git to use the token from `secrets/github_token.txt`
+2. Set up the SOCKS5 proxy for network connectivity
+3. Push the changes to GitHub
+4. Clean up the temporary configuration
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Creating a New Token
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+If you need to create a new token:
+1. Go to GitHub Settings > Developer settings > Personal access tokens > Tokens (classic)
+2. Generate a new token with the `repo` scope
+3. Copy the token and paste it into `secrets/github_token.txt`
