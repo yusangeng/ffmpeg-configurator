@@ -19,7 +19,7 @@ const Home: React.FC = () => {
   // 任务改变时重置参数
   const handleTaskChange = (taskKey: string) => {
     setSelectedTask(taskKey);
-    setParameters({}); // 重置参数
+    // 不要立即重置参数，而是让ParameterConfigurator来处理参数更新
   };
 
   return (
