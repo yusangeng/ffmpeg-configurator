@@ -16,11 +16,8 @@ jobs:
           node-version: 20
       - run: npm install --legacy-peer-deps
       - run: npm run build
-      # Commit and push the docs directory to main branch
-      - name: Commit and push docs directory
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs
-          git commit -m "Deploy to GitHub Pages" || echo "No changes to commit"
-          git push
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # 替换为你的构建输出目录
