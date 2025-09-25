@@ -1,0 +1,768 @@
+{
+  "versions": {
+    "4.4": {
+      "generic": [
+        {
+          "name": "-L",
+          "description": "显示许可证信息",
+          "label": "显示许可证 (-L)",
+          "type": "boolean",
+          "defaultValue": false,
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-h",
+          "description": "显示帮助信息",
+          "label": "显示帮助 (-h)",
+          "type": "string",
+          "options": ["long", "full", "decoder", "encoder", "demuxer", "muxer", "filter", "bsf", "protocol"],
+          "defaultValue": "basic",
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "main": [
+        {
+          "name": "-i",
+          "description": "指定输入文件路径",
+          "label": "输入文件 (-i)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-i input.mp4", "-i https://example.com/video.mp4"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-c",
+          "description": "选择编解码器，或使用copy进行流复制",
+          "label": "编解码器 (-c)",
+          "type": "string",
+          "defaultValue": "copy",
+          "examples": ["-c:v libx264", "-c:a copy", "-c:s mov_text"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-f",
+          "description": "强制指定输入或输出文件格式",
+          "label": "格式 (-f)",
+          "type": "string",
+          "options": ["mp4", "mov", "avi", "mkv", "webm", "flv", "m4v", "3gp", "wmv", "ts", "mxf"],
+          "defaultValue": "",
+          "examples": ["-f mp4", "-f mov", "-f avi"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "video": [
+        {
+          "name": "-b:v",
+          "description": "设置视频比特率",
+          "label": "视频比特率 (-b:v)",
+          "type": "string",
+          "options": ["1000k", "2000k", "5000k", "10000k", "1M", "2M", "5M", "10M"],
+          "defaultValue": "",
+          "examples": ["-b:v 2000k", "-b:v 500k", "-b:v 1M"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-s",
+          "description": "设置视频帧大小",
+          "label": "帧大小 (-s)",
+          "type": "string",
+          "options": ["1920x1080", "1280x720", "640x480", "3840x2160", "2560x1440", "1280x720", "854x480", "640x360"],
+          "defaultValue": "",
+          "examples": ["-s 1920x1080", "-s hd1080", "-s qvga"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-tag:v",
+          "description": "强制设置视频标签/FourCC",
+          "label": "视频标签 (-tag:v)",
+          "type": "string",
+          "options": ["h264", "avc1", "hvc1", "hev1", "vp8", "vp9", "av01", "theora"],
+          "defaultValue": "",
+          "examples": ["-tag:v h264", "-tag:v avc1"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-r",
+          "description": "设置帧率",
+          "label": "帧率 (-r)",
+          "type": "string",
+          "options": ["24", "25", "30", "50", "60", "120"],
+          "defaultValue": "",
+          "examples": ["-r 30", "-r 60"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-aspect",
+          "description": "设置显示长宽比",
+          "label": "显示长宽比 (-aspect)",
+          "type": "string",
+          "options": ["16:9", "4:3", "21:9", "1:1"],
+          "defaultValue": "",
+          "examples": ["-aspect 16:9", "-aspect 4:3"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "audio": [
+        {
+          "name": "-b:a",
+          "description": "设置音频比特率",
+          "label": "音频比特率 (-b:a)",
+          "type": "string",
+          "options": ["64k", "128k", "192k", "320k", "500k"],
+          "defaultValue": "",
+          "examples": ["-b:a 128k", "-b:a 320k", "-b:a 64k"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-ar",
+          "description": "设置音频采样率",
+          "label": "音频采样率 (-ar)",
+          "type": "string",
+          "options": ["22050", "44100", "48000", "96000", "192000"],
+          "defaultValue": "",
+          "examples": ["-ar 44100", "-ar 48000"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-ac",
+          "description": "设置音频声道数",
+          "label": "音频声道数 (-ac)",
+          "type": "string",
+          "options": ["1", "2", "6", "8"],
+          "defaultValue": "",
+          "examples": ["-ac 2", "-ac 6"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "codec_specific": [
+        {
+          "name": "-c:v",
+          "description": "设置视频编解码器",
+          "label": "视频编解码器 (-c:v)",
+          "type": "string",
+          "options": ["libx264", "libx265", "libvpx-vp9", "libaom-av1", "h264_nvenc", "hevc_nvenc", "h264_amf", "hevc_amf", "h264_qsv", "hevc_qsv", "prores", "libxvid"],
+          "defaultValue": "",
+          "examples": ["-c:v libx264", "-c:v libx265", "-c:v h264_nvenc"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-c:a",
+          "description": "设置音频编解码器",
+          "label": "音频编解码器 (-c:a)",
+          "type": "string",
+          "options": ["aac", "mp3", "libopus", "libvorbis", "flac", "ac3", "eac3", "dts"],
+          "defaultValue": "",
+          "examples": ["-c:a aac", "-c:a mp3", "-c:a libopus"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-c:s",
+          "description": "设置字幕编解码器",
+          "label": "字幕编解码器 (-c:s)",
+          "type": "string",
+          "options": ["mov_text", "ass", "srt", "dvdsub", "dvbsub"],
+          "defaultValue": "",
+          "examples": ["-c:s mov_text", "-c:s srt", "-c:s ass"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "time_control": [
+        {
+          "name": "-ss",
+          "description": "设置开始时间（跳过输入流开头的指定时间）",
+          "label": "开始时间 (-ss)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-ss 00:00:10", "-ss 15", "-ss 00:01:30"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-t",
+          "description": "设置持续时间（输出流的持续时间）",
+          "label": "持续时间 (-t)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-t 30", "-t 00:01:00", "-t 120"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-to",
+          "description": "设置结束时间（指定停止编码的时间戳）",
+          "label": "结束时间 (-to)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-to 00:00:30", "-to 60"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-copyts",
+          "description": "复制时间戳，不进行任何转换",
+          "label": "复制时间戳 (-copyts)",
+          "type": "boolean",
+          "defaultValue": false,
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "filters": [
+        {
+          "name": "-vf",
+          "description": "设置视频滤镜",
+          "label": "视频滤镜 (-vf)",
+          "type": "string",
+          "options": ["scale=1280:720", "crop=100:100:10:10", "rotate=45", "fade=t=in:st=0:d=1", "eq=brightness=0.1:saturation=1.2", "colorbalance=rs=0.1:gs=0.1:bs=0.1", "unsharp=5:5:1.0:5:5:0.0"],
+          "defaultValue": "",
+          "examples": ["-vf scale=1280:720", "-vf crop=100:100:10:10", "-vf rotate=45"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-af",
+          "description": "设置音频滤镜",
+          "label": "音频滤镜 (-af)",
+          "type": "string",
+          "options": ["volume=0.5", "silencedetect=n=-50dB:d=5", "apad", "aresample=44100", "highpass=f=200", "lowpass=f=3000"],
+          "defaultValue": "",
+          "examples": ["-af volume=0.5", "-af aresample=44100"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "hardware_acceleration": [
+        {
+          "name": "-hwaccel",
+          "description": "使用硬件加速解码",
+          "label": "硬件加速 (-hwaccel)",
+          "type": "select",
+          "options": ["none", "auto", "vdpau", "dxva2", "d3d11va", "vaapi", "qsv", "videotoolbox"],
+          "defaultValue": "none",
+          "examples": ["-hwaccel auto", "-hwaccel vaapi", "-hwaccel cuda"],
+          "versionAdded": "2.2.0",
+          "versionDeprecated": null
+        },
+        {
+          "name": "-init_hw_device",
+          "description": "初始化硬件设备",
+          "label": "初始化硬件设备 (-init_hw_device)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-init_hw_device vaapi=foo:/dev/dri/renderD128", "-init_hw_device cuda:0"],
+          "versionAdded": "3.1.0"
+        }
+      ]
+    },
+    "5.1": {
+      "generic": [
+        {
+          "name": "-L",
+          "description": "显示许可证信息",
+          "label": "显示许可证 (-L)",
+          "type": "boolean",
+          "defaultValue": false,
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-h",
+          "description": "显示帮助信息",
+          "label": "显示帮助 (-h)",
+          "type": "string",
+          "options": ["long", "full", "decoder", "encoder", "demuxer", "muxer", "filter", "bsf", "protocol"],
+          "defaultValue": "basic",
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "main": [
+        {
+          "name": "-i",
+          "description": "指定输入文件路径",
+          "label": "输入文件 (-i)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-i input.mp4", "-i https://example.com/video.mp4"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-c",
+          "description": "选择编解码器，或使用copy进行流复制",
+          "label": "编解码器 (-c)",
+          "type": "string",
+          "defaultValue": "copy",
+          "examples": ["-c:v libx264", "-c:a copy", "-c:s mov_text"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-f",
+          "description": "强制指定输入或输出文件格式",
+          "label": "格式 (-f)",
+          "type": "string",
+          "options": ["mp4", "mov", "avi", "mkv", "webm", "flv", "m4v", "3gp", "wmv", "ts", "mxf"],
+          "defaultValue": "",
+          "examples": ["-f mp4", "-f mov", "-f avi"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "video": [
+        {
+          "name": "-b:v",
+          "description": "设置视频比特率",
+          "label": "视频比特率 (-b:v)",
+          "type": "string",
+          "options": ["1000k", "2000k", "5000k", "10000k", "1M", "2M", "5M", "10M"],
+          "defaultValue": "",
+          "examples": ["-b:v 2000k", "-b:v 500k", "-b:v 1M"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-s",
+          "description": "设置视频帧大小",
+          "label": "帧大小 (-s)",
+          "type": "string",
+          "options": ["1920x1080", "1280x720", "640x480", "3840x2160", "2560x1440", "1280x720", "854x480", "640x360"],
+          "defaultValue": "",
+          "examples": ["-s 1920x1080", "-s hd1080", "-s qvga"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-tag:v",
+          "description": "强制设置视频标签/FourCC",
+          "label": "视频标签 (-tag:v)",
+          "type": "string",
+          "options": ["h264", "avc1", "hvc1", "hev1", "vp8", "vp9", "av01", "theora"],
+          "defaultValue": "",
+          "examples": ["-tag:v h264", "-tag:v avc1"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-r",
+          "description": "设置帧率",
+          "label": "帧率 (-r)",
+          "type": "string",
+          "options": ["24", "25", "30", "50", "60", "120"],
+          "defaultValue": "",
+          "examples": ["-r 30", "-r 60"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-aspect",
+          "description": "设置显示长宽比",
+          "label": "显示长宽比 (-aspect)",
+          "type": "string",
+          "options": ["16:9", "4:3", "21:9", "1:1"],
+          "defaultValue": "",
+          "examples": ["-aspect 16:9", "-aspect 4:3"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "audio": [
+        {
+          "name": "-b:a",
+          "description": "设置音频比特率",
+          "label": "音频比特率 (-b:a)",
+          "type": "string",
+          "options": ["64k", "128k", "192k", "320k", "500k"],
+          "defaultValue": "",
+          "examples": ["-b:a 128k", "-b:a 320k", "-b:a 64k"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-ar",
+          "description": "设置音频采样率",
+          "label": "音频采样率 (-ar)",
+          "type": "string",
+          "options": ["22050", "44100", "48000", "96000", "192000"],
+          "defaultValue": "",
+          "examples": ["-ar 44100", "-ar 48000"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-ac",
+          "description": "设置音频声道数",
+          "label": "音频声道数 (-ac)",
+          "type": "string",
+          "options": ["1", "2", "6", "8"],
+          "defaultValue": "",
+          "examples": ["-ac 2", "-ac 6"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "codec_specific": [
+        {
+          "name": "-c:v",
+          "description": "设置视频编解码器",
+          "label": "视频编解码器 (-c:v)",
+          "type": "string",
+          "options": ["libx264", "libx265", "libvpx-vp9", "libaom-av1", "h264_nvenc", "hevc_nvenc", "h264_amf", "hevc_amf", "h264_qsv", "hevc_qsv", "prores", "libxvid"],
+          "defaultValue": "",
+          "examples": ["-c:v libx264", "-c:v libx265", "-c:v h264_nvenc"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-c:a",
+          "description": "设置音频编解码器",
+          "label": "音频编解码器 (-c:a)",
+          "type": "string",
+          "options": ["aac", "mp3", "libopus", "libvorbis", "flac", "ac3", "eac3", "dts"],
+          "defaultValue": "",
+          "examples": ["-c:a aac", "-c:a mp3", "-c:a libopus"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-c:s",
+          "description": "设置字幕编解码器",
+          "label": "字幕编解码器 (-c:s)",
+          "type": "string",
+          "options": ["mov_text", "ass", "srt", "dvdsub", "dvbsub"],
+          "defaultValue": "",
+          "examples": ["-c:s mov_text", "-c:s srt", "-c:s ass"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "time_control": [
+        {
+          "name": "-ss",
+          "description": "设置开始时间（跳过输入流开头的指定时间）",
+          "label": "开始时间 (-ss)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-ss 00:00:10", "-ss 15", "-ss 00:01:30"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-t",
+          "description": "设置持续时间（输出流的持续时间）",
+          "label": "持续时间 (-t)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-t 30", "-t 00:01:00", "-t 120"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-to",
+          "description": "设置结束时间（指定停止编码的时间戳）",
+          "label": "结束时间 (-to)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-to 00:00:30", "-to 60"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-copyts",
+          "description": "复制时间戳，不进行任何转换",
+          "label": "复制时间戳 (-copyts)",
+          "type": "boolean",
+          "defaultValue": false,
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "filters": [
+        {
+          "name": "-vf",
+          "description": "设置视频滤镜",
+          "label": "视频滤镜 (-vf)",
+          "type": "string",
+          "options": ["scale=1280:720", "crop=100:100:10:10", "rotate=45", "fade=t=in:st=0:d=1", "eq=brightness=0.1:saturation=1.2", "colorbalance=rs=0.1:gs=0.1:bs=0.1", "unsharp=5:5:1.0:5:5:0.0"],
+          "defaultValue": "",
+          "examples": ["-vf scale=1280:720", "-vf crop=100:100:10:10", "-vf rotate=45"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-af",
+          "description": "设置音频滤镜",
+          "label": "音频滤镜 (-af)",
+          "type": "string",
+          "options": ["volume=0.5", "silencedetect=n=-50dB:d=5", "apad", "aresample=44100", "highpass=f=200", "lowpass=f=3000"],
+          "defaultValue": "",
+          "examples": ["-af volume=0.5", "-af aresample=44100"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "hardware_acceleration": [
+        {
+          "name": "-hwaccel",
+          "description": "使用硬件加速解码",
+          "label": "硬件加速 (-hwaccel)",
+          "type": "select",
+          "options": ["none", "auto", "vdpau", "dxva2", "d3d11va", "vaapi", "qsv", "videotoolbox", "opencl", "cuda"],
+          "defaultValue": "none",
+          "examples": ["-hwaccel auto", "-hwaccel vaapi", "-hwaccel cuda"],
+          "versionAdded": "2.2.0",
+          "versionDeprecated": null
+        },
+        {
+          "name": "-init_hw_device",
+          "description": "初始化硬件设备",
+          "label": "初始化硬件设备 (-init_hw_device)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-init_hw_device cuda:0", "-init_hw_device vaapi=/dev/dri/renderD128"],
+          "versionAdded": "3.1.0"
+        }
+      ]
+    },
+    "6.1": {
+      "generic": [
+        {
+          "name": "-L",
+          "description": "显示许可证信息",
+          "label": "显示许可证 (-L)",
+          "type": "boolean",
+          "defaultValue": false,
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-h",
+          "description": "显示帮助信息",
+          "label": "显示帮助 (-h)",
+          "type": "string",
+          "options": ["long", "full", "decoder", "encoder", "demuxer", "muxer", "filter", "bsf", "protocol"],
+          "defaultValue": "basic",
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "main": [
+        {
+          "name": "-i",
+          "description": "指定输入文件路径",
+          "label": "输入文件 (-i)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-i input.mp4", "-i https://example.com/video.mp4"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-c",
+          "description": "选择编解码器，或使用copy进行流复制",
+          "label": "编解码器 (-c)",
+          "type": "string",
+          "defaultValue": "copy",
+          "examples": ["-c:v libx264", "-c:a copy", "-c:s mov_text"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-f",
+          "description": "强制指定输入或输出文件格式",
+          "label": "格式 (-f)",
+          "type": "string",
+          "options": ["mp4", "mov", "avi", "mkv", "webm", "flv", "m4v", "3gp", "wmv", "ts", "mxf"],
+          "defaultValue": "",
+          "examples": ["-f mp4", "-f mov", "-f avi"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "video": [
+        {
+          "name": "-b:v",
+          "description": "设置视频比特率",
+          "label": "视频比特率 (-b:v)",
+          "type": "string",
+          "options": ["1000k", "2000k", "5000k", "10000k", "1M", "2M", "5M", "10M"],
+          "defaultValue": "",
+          "examples": ["-b:v 2000k", "-b:v 500k", "-b:v 1M"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-s",
+          "description": "设置视频帧大小",
+          "label": "帧大小 (-s)",
+          "type": "string",
+          "options": ["1920x1080", "1280x720", "640x480", "3840x2160", "2560x1440", "1280x720", "854x480", "640x360"],
+          "defaultValue": "",
+          "examples": ["-s 1920x1080", "-s hd1080", "-s qvga"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-tag:v",
+          "description": "强制设置视频标签/FourCC",
+          "label": "视频标签 (-tag:v)",
+          "type": "string",
+          "options": ["h264", "avc1", "hvc1", "hev1", "vp8", "vp9", "av01", "theora"],
+          "defaultValue": "",
+          "examples": ["-tag:v h264", "-tag:v avc1"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-r",
+          "description": "设置帧率",
+          "label": "帧率 (-r)",
+          "type": "string",
+          "options": ["24", "25", "30", "50", "60", "120"],
+          "defaultValue": "",
+          "examples": ["-r 30", "-r 60"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-aspect",
+          "description": "设置显示长宽比",
+          "label": "显示长宽比 (-aspect)",
+          "type": "string",
+          "options": ["16:9", "4:3", "21:9", "1:1"],
+          "defaultValue": "",
+          "examples": ["-aspect 16:9", "-aspect 4:3"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "audio": [
+        {
+          "name": "-b:a",
+          "description": "设置音频比特率",
+          "label": "音频比特率 (-b:a)",
+          "type": "string",
+          "options": ["64k", "128k", "192k", "320k", "500k"],
+          "defaultValue": "",
+          "examples": ["-b:a 128k", "-b:a 320k", "-b:a 64k"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-ar",
+          "description": "设置音频采样率",
+          "label": "音频采样率 (-ar)",
+          "type": "string",
+          "options": ["22050", "44100", "48000", "96000", "192000"],
+          "defaultValue": "",
+          "examples": ["-ar 44100", "-ar 48000"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-ac",
+          "description": "设置音频声道数",
+          "label": "音频声道数 (-ac)",
+          "type": "string",
+          "options": ["1", "2", "6", "8"],
+          "defaultValue": "",
+          "examples": ["-ac 2", "-ac 6"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "codec_specific": [
+        {
+          "name": "-c:v",
+          "description": "设置视频编解码器",
+          "label": "视频编解码器 (-c:v)",
+          "type": "string",
+          "options": ["libx264", "libx265", "libvpx-vp9", "libaom-av1", "h264_nvenc", "hevc_nvenc", "h264_amf", "hevc_amf", "h264_qsv", "hevc_qsv", "prores", "libxvid"],
+          "defaultValue": "",
+          "examples": ["-c:v libx264", "-c:v libx265", "-c:v h264_nvenc"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-c:a",
+          "description": "设置音频编解码器",
+          "label": "音频编解码器 (-c:a)",
+          "type": "string",
+          "options": ["aac", "mp3", "libopus", "libvorbis", "flac", "ac3", "eac3", "dts"],
+          "defaultValue": "",
+          "examples": ["-c:a aac", "-c:a mp3", "-c:a libopus"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-c:s",
+          "description": "设置字幕编解码器",
+          "label": "字幕编解码器 (-c:s)",
+          "type": "string",
+          "options": ["mov_text", "ass", "srt", "dvdsub", "dvbsub"],
+          "defaultValue": "",
+          "examples": ["-c:s mov_text", "-c:s srt", "-c:s ass"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "time_control": [
+        {
+          "name": "-ss",
+          "description": "设置开始时间（跳过输入流开头的指定时间）",
+          "label": "开始时间 (-ss)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-ss 00:00:10", "-ss 15", "-ss 00:01:30"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-t",
+          "description": "设置持续时间（输出流的持续时间）",
+          "label": "持续时间 (-t)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-t 30", "-t 00:01:00", "-t 120"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-to",
+          "description": "设置结束时间（指定停止编码的时间戳）",
+          "label": "结束时间 (-to)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-to 00:00:30", "-to 60"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-copyts",
+          "description": "复制时间戳，不进行任何转换",
+          "label": "复制时间戳 (-copyts)",
+          "type": "boolean",
+          "defaultValue": false,
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "filters": [
+        {
+          "name": "-vf",
+          "description": "设置视频滤镜",
+          "label": "视频滤镜 (-vf)",
+          "type": "string",
+          "options": ["scale=1280:720", "crop=100:100:10:10", "rotate=45", "fade=t=in:st=0:d=1", "eq=brightness=0.1:saturation=1.2", "colorbalance=rs=0.1:gs=0.1:bs=0.1", "unsharp=5:5:1.0:5:5:0.0"],
+          "defaultValue": "",
+          "examples": ["-vf scale=1280:720", "-vf crop=100:100:10:10", "-vf rotate=45"],
+          "versionAdded": "1.0.0"
+        },
+        {
+          "name": "-af",
+          "description": "设置音频滤镜",
+          "label": "音频滤镜 (-af)",
+          "type": "string",
+          "options": ["volume=0.5", "silencedetect=n=-50dB:d=5", "apad", "aresample=44100", "highpass=f=200", "lowpass=f=3000"],
+          "defaultValue": "",
+          "examples": ["-af volume=0.5", "-af aresample=44100"],
+          "versionAdded": "1.0.0"
+        }
+      ],
+      "hardware_acceleration": [
+        {
+          "name": "-hwaccel",
+          "description": "使用硬件加速解码",
+          "label": "硬件加速 (-hwaccel)",
+          "type": "select",
+          "options": ["none", "auto", "vdpau", "dxva2", "d3d11va", "vaapi", "qsv", "videotoolbox", "opencl", "cuda", "vulkan"],
+          "defaultValue": "none",
+          "examples": ["-hwaccel auto", "-hwaccel vaapi", "-hwaccel cuda", "-hwaccel vulkan"],
+          "versionAdded": "2.2.0",
+          "versionDeprecated": null
+        },
+        {
+          "name": "-init_hw_device",
+          "description": "初始化硬件设备",
+          "label": "初始化硬件设备 (-init_hw_device)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-init_hw_device cuda:0", "-init_hw_device vulkan:0", "-init_hw_device vaapi=/dev/dri/renderD128"],
+          "versionAdded": "3.1.0"
+        }
+      ],
+      "filters": [
+        {
+          "name": "-filter_complex",
+          "description": "创建复杂滤镜图",
+          "label": "复杂滤镜 (-filter_complex)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-filter_complex '[0:v]scale=1280:720[out]'", "-filter_complex '[0:v]fade=t=in:st=0:d=1[v]'"],
+          "versionAdded": "2.0.0"
+        },
+        {
+          "name": "-lavfi",
+          "description": "等同于-filter_complex",
+          "label": "Libav滤镜 (-lavfi)",
+          "type": "string",
+          "defaultValue": "",
+          "examples": ["-lavfi '[0:v]scale=1280:720[out]'"],
+          "versionAdded": "2.0.0"
+        }
+      ]
+    }
+  }
+}
